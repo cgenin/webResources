@@ -1,6 +1,6 @@
 @import "variables";
 @import "components/widgets/spinner";
-@import "components/pages/project-list";
+@import "components/pages/project/project-list";
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -87,4 +87,11 @@ body {
     padding-right: 16px;
     padding-left: 16px;
   }
+}
+
+/**********************************************************************************************************************/
+// Utility class
+
+.text-center {
+  text-align: center;
 }

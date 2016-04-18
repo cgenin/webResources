@@ -3,9 +3,9 @@ import {Route, IndexRoute} from 'react-router';
 import hashHistory from 'react-router/lib/hashHistory';
 import MainLayout from './components/layouts/mainLayout';
 import HomePage from './components/pages/home';
-import ProjectCreatePage from './components/pages/project-create';
-import ProjectPage from './components/pages/project-edit';
-import ProjectListPage from './components/pages/project-list';
+import ProjectCreatePage from './components/pages/project/create';
+import ProjectPage from './components/pages/project/edit';
+import ProjectListPage from './components/pages/project/list';
 
 const history = hashHistory;
 const HOME_URL = '/';

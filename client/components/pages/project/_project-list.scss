@@ -1,0 +1,23 @@
+$md-max-width: 100em;
+$def-project-list-item: 12em;
+
+#project-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-list-item {
+  margin: .5em;
+  padding: .25em;
+  width: $def-project-list-item;
+  height: $def-project-list-item;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: $md-width) {
+  width: $md-max-width;
+  max-width: $md-max-width;
+}
