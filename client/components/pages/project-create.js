@@ -1,4 +1,7 @@
 import React from 'react';
+import connect from 'react-redux/lib/components/connect';
+import {create} from '../../modules/project/actions';
+import {toProjectPage} from '../../routes';
 import Paper from 'material-ui/lib/paper';
 import TextField from 'material-ui/lib/text-field';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';
@@ -6,10 +9,27 @@ import Divider from 'material-ui/lib/divider';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
 
+
+const mapStateToProps = function (state) {
+  return {
+    routing: state.routing
+  };
+};
+
+const mapDispatchToProps = function (dispatch) {
+  return {
+    onSave(project) {
+      dispatch(create(project))
+        .then((id) => toProjectPage(id))
+        .catch(e => console.error(e));
+    }
+  };
+};
+
 const defaultState = {
   name: {value: ''},
   beginDate: {value: new Date()},
-  endDate: {},
+  endDate: {}
 };
 
 const formatDate = (date) => {
@@ -40,9 +60,9 @@ class ProjectCreatePage extends React.Component {
     this.onValidate = this.onValidate.bind(this);
   }
 
-  onChangeText() {
+  onChangeText(e) {
     const state = Object.assign({}, this.state);
-    state.name.value = this.refs.name.value;
+    state.name.value = e.target.value;
     state.name.error = false;
     this.setState(state);
   }
@@ -73,6 +93,7 @@ class ProjectCreatePage extends React.Component {
       this.setState(state);
       return;
     }
+    this.props.onSave({name: state.name.value, beginDate: state.beginDate.value, endDate: state.endDate.value})
   }
 
   render() {
@@ -111,4 +132,4 @@ class ProjectCreatePage extends React.Component {
   }
 }
 
-export default ProjectCreatePage;
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectCreatePage);

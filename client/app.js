@@ -9,23 +9,24 @@ import thunkMiddleware from 'redux-thunk';
 import logMiddleware from 'redux-logger';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import Router from 'react-router/lib/Router';
-import hashHistory from 'react-router/lib/hashHistory';
-import {syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import {syncHistoryWithStore, routerReducer, routerMiddleware} from 'react-router-redux';
 
 
 import {reducers} from './modules/project/reducers';
-import routes from './routes';
+import hashHistory from 'react-router/lib/hashHistory';
+import {ALL_ROUTES} from './routes';
 
 
 const rootReducer = combineReducers({
-  routing: routerReducer ,
+  routing: routerReducer,
   projects: reducers
 });
 
 export const store = compose(
   applyMiddleware(
     thunkMiddleware,
-    logMiddleware()
+    logMiddleware(),
+    routerMiddleware(hashHistory)
   )
 )(createStore)(rootReducer);
 
@@ -38,7 +39,7 @@ injectTapEventPlugin();
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      {routes}
+      {ALL_ROUTES}
     </Router>
   </Provider>
   , document.getElementById('app')

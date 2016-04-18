@@ -22,7 +22,7 @@ class Projects extends Controller {
   def create = Action(BodyParsers.parse.json) { implicit request =>
     request.body.asOpt[JsObject].map(obj => {
       val id = DBs.projects.save(obj)
-      Created.withHeaders("Location" -> routes.Projects.get(id).absoluteURL())
+      Created(id).withHeaders("Location" -> routes.Projects.get(id).absoluteURL())
     }).getOrElse(BadRequest)
   }
 

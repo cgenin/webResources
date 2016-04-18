@@ -1,0 +1,12 @@
+$md-max-width:100em;
+
+#project-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (min-width: $md-width) {
+  width: $md-max-width;
+  max-width: $md-max-width;
+}

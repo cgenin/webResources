@@ -7,14 +7,22 @@ import CardTitle from 'material-ui/lib/card/card-title';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import IconButton from 'material-ui/lib/icon-button';
 
+
 class HomePage extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+  }
+
+
   render() {
     return (
       <Card>
-        <CardHeader title="Project Manager Application" avatar="http://lorempixel.com/100/100/nature/" />
+        <CardHeader title="Project Manager Application" avatar="/assets/images/project-avatar.jpg"/>
         <CardMedia
-          overlay={<CardTitle title="Manage Your Project" subtitle="Just for me" />}  >
-          <img src="http://lorempixel.com/600/337/nature/" />
+          overlay={<CardTitle title="Manage Your Project" subtitle="Just for me" />}>
+          <img src="/assets/images/project-photo.jpg"/>
         </CardMedia>
         <CardActions>
           <IconButton tooltip="Add a new Project" tooltipPosition="top-right">
