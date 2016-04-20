@@ -1,5 +1,6 @@
 import React from 'react';
 import connect from 'react-redux/lib/components/connect';
+import ListResources from '../../widgets/task/list-tasks';
 
 const mapStateToProps = function (state, props) {
   console.log(props)
@@ -18,7 +19,10 @@ class ProjectPage extends React.Component {
   }
 
   render() {
-    return (<div><h1>MyPage : {this.props.selected.name}</h1></div>);
+    return (<div>
+      <div><h1>MyPage : {this.props.selected.name}</h1></div>
+      <ListResources project={this.props.selected} />
+    </div>);
   }
 }
 

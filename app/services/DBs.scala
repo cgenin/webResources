@@ -38,23 +38,29 @@ object DBs {
 
     def save(data: JsObject) = {
       val id = (data \ "id").getOrElse(JsString(UUID.randomUUID().toString)).as[String]
-      map.remove(id)
-      val ob = data.deepMerge(Json.obj("id" -> id))
-      map.put(id, Json.stringify(ob))
-      commit
-      id
+      serialize(id, data)
     }
 
     def get(key: String): JsValue = {
       Option(map.get(key)).map(s => Json.parse(s)).getOrElse(Json.obj())
     }
 
-    def list = {
+    def list:JsArray = {
       val scala: Seq[Object] = map.values().asScala.to[Seq]
       JsArray(scala.map(v => v.toString).map(v => Json.parse(v)))
     }
+
+    def serialize(id: String, data: JsObject): String = {
+      map.remove(id)
+      val ob = data.deepMerge(Json.obj("id" -> id))
+      map.put(id, Json.stringify(ob))
+      commit
+      id
+    }
   }
 
-  val projects = Type("projects")
 
+
+  val projects = Type("projects")
+  val tasks = Type("tasks")
 }

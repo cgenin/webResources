@@ -6,6 +6,7 @@ import HomePage from './components/pages/home';
 import ProjectCreatePage from './components/pages/project/create';
 import ProjectPage from './components/pages/project/edit';
 import ProjectListPage from './components/pages/project/list';
+import TaskCreatePage from './components/pages/task/create';
 
 const history = hashHistory;
 const HOME_URL = '/';
@@ -29,6 +30,11 @@ export const toCreateProjectPage = ()=> {
   history.push(`/${CREATE_PROJECT_URL}`);
 };
 
+export const toCreateTaskPage = (id)=> {
+  const url = `/project/${encodeURIComponent(id)}/task/new`;
+  history.push(url);
+};
+
 export const ALL_ROUTES = (
   <Route>
     <Route path={HOME_URL} component={MainLayout}>
@@ -36,6 +42,7 @@ export const ALL_ROUTES = (
       <Route path={CREATE_PROJECT_URL} component={ProjectCreatePage}/>
       <Route path={LIST_PROJECT_URL } component={ProjectListPage}/>
       <Route path="project/:id" component={ProjectPage}/>
+      <Route path="project/:id/task/new" component={TaskCreatePage}/>
     </Route>
   </Route>
 );

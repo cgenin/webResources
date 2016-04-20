@@ -13,13 +13,15 @@ import {syncHistoryWithStore, routerReducer, routerMiddleware} from 'react-route
 
 
 import {reducers} from './modules/project/reducers';
+import {treducers} from './modules/task/reducers';
 import hashHistory from 'react-router/lib/hashHistory';
 import {ALL_ROUTES} from './routes';
 
 
 const rootReducer = combineReducers({
   routing: routerReducer,
-  projects: reducers
+  projects: reducers,
+  tasks: treducers
 });
 
 export const store = compose(
